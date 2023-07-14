@@ -17,7 +17,7 @@ streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 #Put up a multiselect/ pick list for users to pick fruits they want
 #streamlit.multiselect("Pick fruits of your choice: ",list(my_fruit_list['Fruit']))
-streamlit.multiselect("Pick fruits of your choice: ",list(my_fruit_list.index),['Avocado','Strawberries'])
+#streamlit.multiselect("Pick fruits of your choice: ",list(my_fruit_list.index),['Avocado','Strawberries'])
 
 fruits_selected = streamlit.multiselect("Pick fruits of your choice: ",list(my_fruit_list.index),['Avocado','Strawberries'])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
