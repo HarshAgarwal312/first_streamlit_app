@@ -13,7 +13,8 @@ streamlit.text("🥑🍞 Avocado Toast")
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 streamlit.dataframe(my_fruit_list)
-
+#Put up a multiselect/ pick list for users to pick fruits they want
+streamlit.multiselect("Pick fruits of your choice: ",list(my_fruit_list))
 
 #streamlit.subheader("Breakfast Menu")
 #items = ['Omega 3 and Blueberry Oatmeal','Kale, Spinach & Rocket Smoothie','Hard-Boiled Free-Range Egg']
