@@ -48,7 +48,7 @@ streamlit.dataframe(my_data_rows)
 add_fruit = streamlit.text_input('Which fruit would you like to add?')
 streamlit.write('Thanks for adding ',add_fruit)
 
-my_cur.execute('insert into fruit_load_list values ('from streamlit')')
+my_cur.execute("insert into FRUIT_LOAD_LIST values('from streamlit')")
 
 #streamlit.subheader("Breakfast Menu")
 #items = ['Omega 3 and Blueberry Oatmeal','Kale, Spinach & Rocket Smoothie','Hard-Boiled Free-Range Egg']
