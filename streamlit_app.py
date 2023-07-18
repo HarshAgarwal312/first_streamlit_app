@@ -2,6 +2,7 @@ import streamlit
 import pandas 
 import requests
 import snowflake.connector
+from urllib.eror import URLError
 
 
 my_fruit_list = pandas.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
@@ -26,14 +27,20 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 #requests/api part
-fruit_choice = streamlit.text_input('Which fruit would you like information about?','kiwi')
-streamlit.write('User wants to know about: ',fruit_choice)
 
+#streamlit.write('User wants to know about: ',fruit_choice)
 streamlit.header('FruityVice Fruit Advice')
-fruityvice_response = requests.get('https://fruityvice.com/api/fruit/'+ fruit_choice)
-#streamlit.text(fruityvice_response.json()) as data is now in df form
-fruityvice_normalize = pandas.json_normalize(fruityvice_response.json())
-streamlit.dataframe(fruityvice_normalize)
+try:
+  fruit_choice = streamlit.text_input('Which fruit would you like information about?')
+  if not fruit_choice:
+    streamlit.error("Please select a fruit to get information.")
+  else:  
+    fruityvice_response = requests.get('https://fruityvice.com/api/fruit/'+ fruit_choice)
+    #streamlit.text(fruityvice_response.json()) as data is now in df form
+    fruityvice_normalize = pandas.json_normalize(fruityvice_response.json())
+    streamlit.dataframe(fruityvice_normalize)
+except URLError as e:
+  streamlit.error()
 
 #connecting to snowflake account and displaying account details
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
