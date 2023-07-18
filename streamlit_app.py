@@ -38,9 +38,11 @@ streamlit.dataframe(fruityvice_normalize)
 #connecting to snowflake account and displaying account details
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_cur.execute("SELECT * FROM fruit_load_list")
 my_data_row = my_cur.fetchone()
-streamlit.text("Hello from Snowflake:")
+#streamlit.text("Hello from Snowflake:")
+streamlit.text("The Fruit Load list contains:")
 streamlit.text(my_data_row)
 
 #streamlit.subheader("Breakfast Menu")
